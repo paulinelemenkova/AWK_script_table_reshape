@@ -6,7 +6,7 @@
 #
 # awk: reshaped initial GMT table of 62 profiles (select two necessary columns; FS as space).
 awk 'BEGIN{FS=" "; OFS=" "} {print $3, $5}' table2.txt > table_10p.txt
-# select only profile 1, save as table as 'table_10profiles' with X and Y (location and depths):
+# select only profile 1, save as table as 'table_10pr' with X and Y (location and depths):
 awk '/profile -L0-00/,/profile -L0-01/' table_10p.txt > table_10pr.txt
 #
 # remove auxiliary files
