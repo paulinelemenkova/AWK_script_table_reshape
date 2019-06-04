@@ -1,4 +1,5 @@
 #!/bin/sh
+# Unix prog: awk, rm
 # AWK script to reshape initial long table.
 # Purpose: remove unnecessary columns and only select necessary columns and rows
 # Initial table: 12726 rows 5 columns; Output table:  201  rows  11 columns.
