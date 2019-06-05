@@ -56,7 +56,7 @@ awk '!/-L0-/' $TMPFILE10 > table_10KKT.csv
 #
 # remove auxiliary files
 rm -f table_p07.csv table_p14.csv table_p21.csv table_p28.csv table_p35.csv table_p42.csv table_p49.csv table_p56.csv table_p62.csv
-rm -f ${TMPFILE0} ${TMPFILE1} ${TMPFILE2} ${TMPFILE3} ${TMPFILE4} ${TMPFILE5} ${TMPFILE6} ${TMPFILE7} ${TMPFILE8} ${TMPFILE9} ${TMPFILE10}
+rm -f $TMPFILE0 $TMPFILE1 $TMPFILE2 $TMPFILE3 $TMPFILE4 $TMPFILE5 $TMPFILE6 $TMPFILE7 $TMPFILE8 $TMPFILE9 $TMPFILE10
 #
 # count number of lines
 awk 'END{print NR}' table2.csv
@@ -65,4 +65,4 @@ awk 'END{print NR}' table_10KKT.csv
 # ans: 201
 #
 # RESULT: table reshaped. Initial: 12726 rows 5 columns; Output:  201  rows  11 columns.
-# Column 1: cross-section line 400 km long (-200:200 km). Columns 2-11: profiles.
+# Column 1: cross-section line 400 km long (-200:200 km). Columns 2-11: profiles
