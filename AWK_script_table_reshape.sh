@@ -4,80 +4,81 @@
 # Purpose: remove unnecessary rows, only select necessary columns, reshape columns => rows
 # Initial table: 12726 rows 5 columns; Output table:  201  rows  11 columns.
 #
+# cd /Users/pauline/Documents/Octave
 # awk: reshaped initial GMT table of 62 profiles (select two necessary columns; FS as space).
-awk 'BEGIN{FS=" "; OFS=" "} {print $3, $5}' table2.txt > table_10p.txt
+awk 'BEGIN{FS=" "; OFS=" "} {print $3, $5}' table2.txt > table_10p.csv
 # select only profile 1, save as table as 'table_10pr' with X and Y (location and depths):
-awk '/profile -L0-00/,/profile -L0-01/' table_10p.txt > table_10pr.txt
+awk '/profile -L0-00/,/profile -L0-01/' table_10p.csv > table_10pr.csv
 #
 # remove auxiliary files
-rm -f table_10p.txt
+rm -f table_10p.csv
 #
 # awk: delete header and tail
-awk '!/-L0-/' table_10pr.txt > table_10profiles.txt
+awk '!/-L0-/' table_10pr.csv > table_10profiles.csv
 #
 # remove auxiliary files
-rm -f table_10pr.txt
+rm -f table_10pr.csv
 #
 # awk: select profile i from the initial table by awk (print section of file between two regex).
 # i: 1, 7, 14, 21, 28, 35, 42, 49, 56, 62.
-awk '/-L0-07/,/-L0-08/' table2.txt > table_p07.txt
-awk '/-L0-14/,/-L0-15/' table2.txt > table_p14.txt
-awk '/-L0-21/,/-L0-22/' table2.txt > table_p21.txt
-awk '/-L0-28/,/-L0-29/' table2.txt > table_p28.txt
-awk '/-L0-35/,/-L0-36/' table2.txt > table_p35.txt
-awk '/-L0-42/,/-L0-43/' table2.txt > table_p42.txt
-awk '/-L0-49/,/-L0-50/' table2.txt > table_p49.txt
-awk '/-L0-56/,/-L0-57/' table2.txt > table_p56.txt
-awk '/-L0-62/,EOF' table2.txt > table_p62.txt
+awk '/-L0-07/,/-L0-08/' table2.csv > table_p07.csv
+awk '/-L0-14/,/-L0-15/' table2.csv > table_p14.csv
+awk '/-L0-21/,/-L0-22/' table2.csv > table_p21.csv
+awk '/-L0-28/,/-L0-29/' table2.csv > table_p28.csv
+awk '/-L0-35/,/-L0-36/' table2.csv > table_p35.csv
+awk '/-L0-42/,/-L0-43/' table2.csv > table_p42.csv
+awk '/-L0-49/,/-L0-50/' table2.csv > table_p49.csv
+awk '/-L0-56/,/-L0-57/' table2.csv > table_p56.csv
+awk '/-L0-62/,EOF' table2.csv > table_p62.csv
 #
 # awk: only take Y column (field 5) from the profile i
-awk '{print $5}' table_p07.txt > table_Y07.txt
-awk '{print $5}' table_p14.txt > table_Y14.txt
-awk '{print $5}' table_p21.txt > table_Y21.txt
-awk '{print $5}' table_p28.txt > table_Y28.txt
-awk '{print $5}' table_p35.txt > table_Y35.txt
-awk '{print $5}' table_p42.txt > table_Y42.txt
-awk '{print $5}' table_p49.txt > table_Y49.txt
-awk '{print $5}' table_p56.txt > table_Y56.txt
-awk '{print $5}' table_p62.txt > table_Y62.txt
+awk '{print $5}' table_p07.csv > table_Y07.csv
+awk '{print $5}' table_p14.csv > table_Y14.csv
+awk '{print $5}' table_p21.csv > table_Y21.csv
+awk '{print $5}' table_p28.csv > table_Y28.csv
+awk '{print $5}' table_p35.csv > table_Y35.csv
+awk '{print $5}' table_p42.csv > table_Y42.csv
+awk '{print $5}' table_p49.csv > table_Y49.csv
+awk '{print $5}' table_p56.csv > table_Y56.csv
+awk '{print $5}' table_p62.csv > table_Y62.csv
 #
 # remove auxiliary files
-rm -f table_p07.txt table_p14.txt table_p21.txt table_p28.txt table_p35.txt table_p42.txt table_p49.txt table_p56.txt table_p62.txt
+rm -f table_p07.csv table_p14.csv table_p21.csv table_p28.csv table_p35.csv table_p42.csv table_p49.csv table_p56.csv table_p62.csv
 #
 # awk: delete header and tail (print only lines which do NOT match regex)
-awk '!/-L0-/' table_Y07.txt > table_Y07n.txt
-awk '!/-L0-/' table_Y14.txt > table_Y14n.txt
-awk '!/-L0-/' table_Y07.txt > table_Y21n.txt
-awk '!/-L0-/' table_Y14.txt > table_Y28n.txt
-awk '!/-L0-/' table_Y07.txt > table_Y35n.txt
-awk '!/-L0-/' table_Y14.txt > table_Y42n.txt
-awk '!/-L0-/' table_Y07.txt > table_Y49n.txt
-awk '!/-L0-/' table_Y14.txt > table_Y56n.txt
-awk '!/-L0-/' table_Y14.txt > table_Y62n.txt
+awk '!/-L0-/' table_Y07.csv > table_Y07n.csv
+awk '!/-L0-/' table_Y14.csv > table_Y14n.csv
+awk '!/-L0-/' table_Y21.csv > table_Y21n.csv
+awk '!/-L0-/' table_Y28.csv > table_Y28n.csv
+awk '!/-L0-/' table_Y35.csv > table_Y35n.csv
+awk '!/-L0-/' table_Y42.csv > table_Y42n.csv
+awk '!/-L0-/' table_Y49.csv > table_Y49n.csv
+awk '!/-L0-/' table_Y56.csv > table_Y56n.csv
+awk '!/-L0-/' table_Y62.csv > table_Y62n.csv
 #
 # remove auxiliary files
-rm -f table_Y07.txt table_Y14.txt table_Y21.txt table_Y28.txt table_Y35.txt table_Y42.txt table_Y49.txt table_Y56.txt table_Y62.txt
+rm -f table_Y07.csv table_Y14.csv table_Y21.csv table_Y28.csv table_Y35.csv table_Y42.csv table_Y49.csv table_Y56.csv table_Y62.csv
 #
-# awk: add single Y column of the profile i to the table 'table_10p.txt'; save output to 'table_10i.txt'
-awk '{print $0}' < table_Y07n.txt | paste table_10profiles.txt - > table_10.txt
-awk '{print $0}' < table_Y14n.txt | paste table_10.txt - > table_10a.txt
-awk '{print $0}' < table_Y21n.txt | paste table_10a.txt - > table_10b.txt
-awk '{print $0}' < table_Y28n.txt | paste table_10b.txt - > table_10c.txt
-awk '{print $0}' < table_Y35n.txt | paste table_10c.txt - > table_10d.txt
-awk '{print $0}' < table_Y42n.txt | paste table_10d.txt - > table_10e.txt
-awk '{print $0}' < table_Y49n.txt | paste table_10e.txt - > table_10f.txt
-awk '{print $0}' < table_Y56n.txt | paste table_10f.txt - > table_10g.txt
-awk '{print $0}' < table_Y62n.txt | paste table_10g.txt - > table_10FINAL.txt
+# awk: add single Y column of the profile i to the table 'table_10p.csv'; save output to 'table_10i.csv'
+awk '{print $0}' < table_Y07n.csv | paste table_10profiles.csv - > table_10.csv
+awk '{print $0}' < table_Y14n.csv | paste table_10.csv - > table_10a.csv
+awk '{print $0}' < table_Y21n.csv | paste table_10a.csv - > table_10b.csv
+awk '{print $0}' < table_Y28n.csv | paste table_10b.csv - > table_10c.csv
+awk '{print $0}' < table_Y35n.csv | paste table_10c.csv - > table_10d.csv
+awk '{print $0}' < table_Y42n.csv | paste table_10d.csv - > table_10e.csv
+awk '{print $0}' < table_Y49n.csv | paste table_10e.csv - > table_10f.csv
+awk '{print $0}' < table_Y56n.csv | paste table_10f.csv - > table_10g.csv
+awk '{print $0}' < table_Y62n.csv | paste table_10g.csv - > table_10FIN.csv
 #
 # remove auxiliary files
-rm -f table_Y07n.txt table_Y14n.txt table_Y21n.txt table_Y28n.txt table_Y35n.txt table_Y42n.txt table_Y49n.txt table_Y56n.txt table_Y62n.txt
+rm -f table_Y07n.csv table_Y14n.csv table_Y21n.csv table_Y28n.csv table_Y35n.csv table_Y42n.csv table_Y49n.csv table_Y56n.csv table_Y62n.csv
 # remove auxiliary files
-rm -f table_10profiles.txt table_10.txt table_10a.txt table_10b.txt table_10c.txt table_10d.txt table_10e.txt table_10f.txt table_10g.txt
+rm -f table_10profiles.csv table_10.csv table_10a.csv table_10b.csv table_10c.csv table_10d.csv table_10e.csv table_10f.csv table_10g.csv
 #
 # count number of lines
-awk 'END{print NR}' table2.txt
+awk 'END{print NR}' table2.csv
 # ans: 12726
-awk 'END{print NR}' table_10FINAL.txt
+awk 'END{print NR}' table_10FIN.csv
 # ans: 201
 #
 # RESULT: table reshaped. Initial: 12726 rows 5 columns; Output:  201  rows  11 columns.
