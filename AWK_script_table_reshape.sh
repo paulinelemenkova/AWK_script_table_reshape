@@ -3,7 +3,8 @@
 # AWK script to reshape initial long table.
 # Purpose: remove unnecessary rows, only select necessary columns, reshape columns => rows
 # Initial table: 12726 rows 5 columns; Output table:  201  rows  11 columns.
-# # cd /Users/pauline/Documents/Octave
+# cd /Users/pauline/Documents/Octave
+# pwd
 #
 # Unix: mktemp make tempfile
 TMPFILE0=$(mktemp)
@@ -55,6 +56,7 @@ awk '!/-L0-/' $TMPFILE10 > table_10KKT.csv
 #
 # remove auxiliary files
 rm -f table_p07.csv table_p14.csv table_p21.csv table_p28.csv table_p35.csv table_p42.csv table_p49.csv table_p56.csv table_p62.csv
+rm -f ${TMPFILE0} ${TMPFILE1} ${TMPFILE2} ${TMPFILE3} ${TMPFILE4} ${TMPFILE5} ${TMPFILE6} ${TMPFILE7} ${TMPFILE8} ${TMPFILE9} ${TMPFILE10}
 #
 # count number of lines
 awk 'END{print NR}' table2.csv
