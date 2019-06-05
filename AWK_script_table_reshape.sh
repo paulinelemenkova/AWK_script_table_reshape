@@ -1,7 +1,7 @@
 #!/bin/sh
-# Unix prog: awk, rm
+# Unix prog: awk, rm, echo
 # AWK script to reshape initial long table.
-# Purpose: remove unnecessary columns and only select necessary columns and rows
+# Purpose: remove unnecessary rows, only select necessary columns, reshape columns => rows
 # Initial table: 12726 rows 5 columns; Output table:  201  rows  11 columns.
 #
 # awk: reshaped initial GMT table of 62 profiles (select two necessary columns; FS as space).
@@ -67,7 +67,7 @@ awk '{print $0}' < table_Y35n.txt | paste table_10c.txt - > table_10d.txt
 awk '{print $0}' < table_Y42n.txt | paste table_10d.txt - > table_10e.txt
 awk '{print $0}' < table_Y49n.txt | paste table_10e.txt - > table_10f.txt
 awk '{print $0}' < table_Y56n.txt | paste table_10f.txt - > table_10g.txt
-awk '{print $0}' < table_Y62n.txt | paste table_10g.txt - > table_10h.txt
+awk '{print $0}' < table_Y62n.txt | paste table_10g.txt - > table_10FINAL.txt
 #
 # remove auxiliary files
 rm -f table_Y07n.txt table_Y14n.txt table_Y21n.txt table_Y28n.txt table_Y35n.txt table_Y42n.txt table_Y49n.txt table_Y56n.txt table_Y62n.txt
@@ -77,7 +77,22 @@ rm -f table_10profiles.txt table_10.txt table_10a.txt table_10b.txt table_10c.tx
 # count number of lines
 awk 'END{print NR}' table2.txt
 # ans: 12726
-awk 'END{print NR}' table_10h.txt
+awk 'END{print NR}' table_10FINAL.txt
 # ans: 201
 #
-# RESULT: table reshaped. Initial: 12726 rows 5 columns; Output:  201  rows  11 columns. Column 1: cross-section line 400 km long (-200:200 km). Columns 2-11: profiles. 
+# RESULT: table reshaped. Initial: 12726 rows 5 columns; Output:  201  rows  11 columns.
+# Column 1: cross-section line 400 km long (-200:200 km). Columns 2-11: profiles.
+#
+# AWK - Loops select every 3.
+#awk 'BEGIN {
+#for (i = 1; i <= 62; ++i) {
+#if (i % 3 == 0) print i ; else continue
+#}
+#}'
+#
+##-t scriptnameXXXXX создает файл в специальной папке для временных файлов с названием scriptname, а вместо XXXXXX подставляются случайные цифры (сколько X, столько и цифр). затем, вместо имени, используй ${TMPFILE1}
+#
+#TMPFILE1=`mktemp -t scriptnameXXXXXX` || exit 1
+#echo "program output" >> ${TMPFILE1}
+#rm -f ${TMPFILE1}
+#
