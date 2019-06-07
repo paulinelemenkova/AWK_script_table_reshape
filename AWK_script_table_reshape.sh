@@ -40,8 +40,8 @@ awk '/-L0-49/,/-L0-50/' $TMPFILE1 > table_p49.csv
 awk '/-L0-56/,/-L0-57/' $TMPFILE1 > table_p56.csv
 awk '/-L0-62/,EOF' $TMPFILE1 > table_p62.csv
 #
-# awk: add single Y column of the profile i to the table 'table_10p.csv'; save output to 'table_10FIN.csv'
-awk '{print $0}' < table_p07.csv | paste table_10p.csv - > $TMPFILE2
+# awk: add single Y column of the profile i to the table 'table_10p.csv'; save output to 'table_10KKT.csv' (here: Kuril-Kamchatka Trench)
+awk '{print $0}' < table_p07.csv | tee check.csv | paste table_10p.csv - > $TMPFILE2
 awk '{print $0}' < table_p14.csv | paste $TMPFILE2 - > $TMPFILE3
 awk '{print $0}' < table_p21.csv | paste $TMPFILE3 - > $TMPFILE4
 awk '{print $0}' < table_p28.csv | paste $TMPFILE4 - > $TMPFILE5
@@ -55,7 +55,7 @@ awk '{print $0}' < table_p62.csv | paste $TMPFILE9 - > $TMPFILE10
 awk '!/-L0-/' $TMPFILE10 > table_10KKT.csv
 #
 # remove auxiliary files
-rm -f table_p07.csv table_p14.csv table_p21.csv table_p28.csv table_p35.csv table_p42.csv table_p49.csv table_p56.csv table_p62.csv
+rm -f table_p07.csv table_p14.csv table_p21.csv table_p28.csv table_p35.csv table_p42.csv table_p49.csv table_p56.csv table_p62.csv check.csv
 rm -f $TMPFILE0 $TMPFILE1 $TMPFILE2 $TMPFILE3 $TMPFILE4 $TMPFILE5 $TMPFILE6 $TMPFILE7 $TMPFILE8 $TMPFILE9 $TMPFILE10
 #
 # count number of lines
